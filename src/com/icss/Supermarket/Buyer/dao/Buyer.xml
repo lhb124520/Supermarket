@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icss.Supermarket.Buyer.dao.IDepartmentDao">
+
+    
+    <resultMap type="Buyer" id="Suppliermdb">
+       
+    </resultMap>
+    
+    <select id="query" parameterType="Buyer" resultMap="Suppliermdb">
+        select * from  InGoodsInfo where UserName=#{UserName};
+        
+    </select>
+    <select id="querySupplierName" parameterType="Buyer" resultMap="Suppliermdb">
+        select SupplierName from  Supplier;
+        
+    </select>
+    <insert id="insert" parameterType="Buyer">
+        insert into InGoodsInfo(UserName, SupplierName, StoreName,GoodsName,GoodsInPrice,GoodsNum) values(#{UserName}, #{SupplierName}, #{StoreName}, #{GoodsName}, #{GoodsInPrice}, #{GoodsNum})
+    </insert>
+    <insert id="insert1" parameterType="Buyer">
+        insert into stockinfo(GoodsName, SupplierName, StoreName,StoreNum) values(#{GoodsName}, #{SupplierName}, #{StoreName}, #{GoodsNum})
+    </insert>
+    <select id="getOne" parameterType="int" resultMap="Suppliermdb">
+        select * from InGoodsInfo where GoodsID = #{GoodsID}
+    </select>
+    
+     <update id="update" parameterType="Buyer">
+        update InGoodsInfo
+        <set>        
+        SupplierName = #{SupplierName},
+        StoreName = #{StoreName},
+        GoodsName = #{GoodsName},
+        GoodsInPrice = #{GoodsInPrice},
+        GoodsNum = #{GoodsNum},
+        </set>
+        where GoodsID = #{GoodsID};
+        
+       
+    </update>
+    <update id="update1" parameterType="Buyer">
+        update stockinfo
+        <set>
+           
+        SupplierName = #{SupplierName},
+        StoreName = #{StoreName},
+        StoreNum = #{GoodsNum},
+        </set>
+        where  GoodsName = #{GoodsName};
+        
+       
+    </update>
+      <delete id="delete" parameterType="int">
+        delete from InGoodsInfo where GoodsID = #{GoodsID}
+    </delete>
+    <delete id="delete1" parameterType="int">
+        delete from stockinfo where GoodsName = #{GoodsName}
+    </delete>
+    
+   
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icss.Supermarket.StockInfo.dao.IDepartmentDao">
+
+    
+    <resultMap type="StockInfo" id="Stockmdb">
+       
+    </resultMap>
+    
+    <select id="query" parameterType="StockInfo" resultMap="Stockmdb">
+        select * from  StockInfo;
+        
+    </select>
+    <select id="queryGoodsName" parameterType="StockInfo" resultMap="Stockmdb">
+        select GoodsName from  InGoodsInfo;
+        
+    </select>
+    <select id="queryone" parameterType="StockInfo" resultMap="Stockmdb">
+        select SupplierName from  Supplier;
+        
+    </select>
+    
+    <insert id="insert" parameterType="StockInfo">
+        insert into StockInfo(GoodsName, SupplierName, StoreName,StoreNum,WarnNum) values(#{GoodsName}, #{SupplierName}, #{StoreName}, #{StoreNum}, #{WarnNum})
+    </insert>
+    
+    <select id="getOne" parameterType="int" resultMap="Stockmdb">
+        select * from StockInfo where StockID = #{StockID}
+    </select>
+    
+     <update id="update" parameterType="StockInfo">
+        update StockInfo
+        <set>
+        StoreName = #{StoreName},
+        WarnNum = #{WarnNum},
+             
+        </set>
+        where StockID = #{StockID}
+    </update>
+    
+      <delete id="delete" parameterType="int">
+        delete from StockInfo where StockID = #{StockID}
+    </delete>
+    
+    
+   
+</mapper>

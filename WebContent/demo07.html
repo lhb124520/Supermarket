@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>会员信息管理</title>
+    <style type="text/css">
+      th,
+      td.item,
+      span {
+        font-family: "宋体";
+        font-size: 9pt;
+        text-align: center;
+      }
+
+      input.btnEdit,
+      input.btnRemove,
+      input.btnOk {
+        border-radius: 4px;
+        border-style: solid;
+        border-color: papayawhip;
+        background-color: skyblue;
+        width: 30px;
+        height: 30px;
+      }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $("#selectAllItem").click(function() {
+          if($(this).attr("checked") == "checked") {
+            $("input[name=selectItem]").attr("checked", $(this).attr("checked"));
+          } else {
+            $("input[name=selectItem]").removeAttr("checked");
+          }
+        });
+
+        $("input.btnRemove").click(doRemove);
+        $("input.btnEdit").click(doEdit);
+
+        $("td>span").click(function() {
+          var $newTr = $("<tr></tr>");
+
+          var $newTd = new Array(
+            $("<td></td>"),
+            $("<td></td>"),
+            $("<td></td>"),
+            $("<td></td>"),
+            $("<td></td>"),
+            $("<td></td>"),
+            $("<td></td>"),
+            $("<td></td>")
+          )
+
+          $newTd[0].html('<input type="checkbox" name="selectItem" />李四');
+          $newTd[1].text("男");
+          $newTd[2].text("622109287318234");
+          $newTd[3].text("VIP");
+          $newTd[4].text("13156845879");
+          $newTd[5].text("1996-02-03");
+          $newTd[6].text("3999.00");
+          var $editBtn = $('<input type="button" class="btnEdit" value="Ｅ" /> ');
+          var $removeBtn = $('<input type="button" class="btnRemove" value="Ｘ" />');
+          $editBtn.click(doEdit);
+          $removeBtn.click(doRemove);
+          $newTd[7].append($editBtn);
+          $newTd[7].append($removeBtn);
+
+          for(i = 0; i < $newTd.length; i++) {
+            $newTd[i].addClass("item");
+            $newTr.append($newTd[i]);
+          }
+
+          $("#mainTable td>span").parent().parent().before($newTr);
+        });
+      });
+
+      function doRemove() {
+        if(confirm("确认删除？")) {
+          $(this).parent().parent().remove()
+        }
+      }
+
+      function doEdit() {
+        var $pObj = $(this).parent().parent().children().eq(2);
+        var $sObj = $("<input type='text' />");
+        $sObj.val($pObj.text());
+        $pObj.text("");
+        $pObj.append($sObj);
+
+        var $newBtn = $("<input type='button' class='btnOk' value='OK'>");
+        $newBtn.click(doOk);
+        $(this).replaceWith($newBtn);
+      }
+
+      function doOk() {
+        var $pObj = $(this).parent().parent().children().eq(2);
+        var $txtObj = $(this).parent().parent().children().eq(2).children().first();
+        $pObj.text($txtObj.val());
+        $txtObj.remove();
+
+        var $newBtn = $('<input type="button" class="btnEdit" value="Ｅ" />');
+        $newBtn.click(doEdit);
+        $(this).replaceWith($newBtn);
+      }
+    </script>
+  </head>
+
+  <body>
+    <table id="mainTable" align="center" border="1" cellpadding="8" cellspacing="0" width="700">
+      <tr>
+        <th><input type="checkbox" id="selectAllItem" />姓名</th>
+        <th>性别</th>
+        <th>卡号</th>
+        <th>会员级别</th>
+        <th>电话号码</th>
+        <th>出生年月</th>
+        <th>消费金额</th>
+        <th>操作</th>
+      </tr>
+      <tr>
+        <td class="item"><input type="checkbox" name="selectItem" />张三</td>
+        <td class="item">男</td>
+        <td class="item">622202110203675</td>
+        <td class="item">短工</td>
+        <td class="item">18951117135</td>
+        <td class="item">1995-12-05</td>
+        <td class="item">10,000.00</td>
+        <td class="item">
+          <input type="button" class="btnEdit" value="Ｅ" />
+          <input type="button" class="btnRemove" value="Ｘ" />
+        </td>
+      </tr>
+      <tr>
+        <td class="item"><input type="checkbox" name="selectItem" />张三</td>
+        <td class="item">男</td>
+        <td class="item">622202110203675</td>
+        <td class="item">短工</td>
+        <td class="item">18951117135</td>
+        <td class="item">1995-12-05</td>
+        <td class="item">10,000.00</td>
+        <td class="item">
+          <input type="button" class="btnEdit" value="Ｅ" />
+          <input type="button" class="btnRemove" value="Ｘ" />
+        </td>
+      </tr>
+      <tr>
+        <td class="item"><input type="checkbox" name="selectItem" />张三</td>
+        <td class="item">男</td>
+        <td class="item">622202110203675</td>
+        <td class="item">短工</td>
+        <td class="item">18951117135</td>
+        <td class="item">1995-12-05</td>
+        <td class="item">10,000.00</td>
+        <td class="item">
+          <input type="button" class="btnEdit" value="Ｅ" />
+          <input type="button" class="btnRemove" value="Ｘ" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="8" align="left"><span>新增</span></td>
+      </tr>
+    </table>
+  </body>
+
+</html>

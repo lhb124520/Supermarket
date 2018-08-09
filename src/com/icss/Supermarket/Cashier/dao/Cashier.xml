@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icss.Supermarket.Cashier.dao.IDepartmentDao">
+
+    
+    <resultMap type="Cashier" id="Suppliermdb">
+       
+    </resultMap>
+    <resultMap type="GoodsInfo" id="GoodsInfo">
+       
+    </resultMap>
+    <select id="query" parameterType="Cashier" resultMap="Suppliermdb">
+        select * from  SaleInfo where UserName=#{UserName};
+        
+    </select>
+     <select id="queryGoods" parameterType="GoodsInfo" resultMap="GoodsInfo">
+        select * from  InGoodsInfo;
+        
+    </select>
+    <select id="queryByID" parameterType="int" resultMap="GoodsInfo">
+        select * from  InGoodsInfo where GoodsID=#{_parameter};
+        
+    </select>
+    <select id="queryGoodsNum" parameterType="String" resultType="int">
+        select StoreNum from  StockInfo where GoodsName=${_parameter};
+        
+    </select>
+    <insert id="insert" parameterType="Cashier">
+        insert into SaleInfo(UserName, GoodsName, GoodsInPrice,GoodsNum,GoodsTime) values(#{UserName}, #{GoodsName}, #{GoodsInPrice}, #{GoodsNum}, #{GoodsTime})
+    </insert>
+    
+    <select id="getOne" parameterType="int" resultMap="Suppliermdb">
+        select * from SaleInfo where SaleID = #{SaleID}
+    </select>
+    
+     <update id="update" parameterType="Cashier">
+        update SaleInfo
+        <set>
+        GoodsName = #{GoodsName},
+        GoodsInPrice = #{GoodsInPrice},
+        GoodsNum = #{GoodsNum},
+        GoodsTime = #{GoodsTime},
+          
+        </set>
+        where SaleID = #{SaleID};
+      
+    </update>
+    
+    <update id="update1" parameterType="map">
+        
+        
+       update StockInfo
+        <set>       
+        StoreNum = #{balance}, 
+        </set>
+        where GoodsName =#{GoodName};
+    </update>
+      <delete id="delete" parameterType="int">
+        delete from SaleInfo where SaleID = #{SaleID}
+    </delete>
+    
+    
+   
+</mapper>

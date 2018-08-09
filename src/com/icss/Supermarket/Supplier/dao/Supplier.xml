@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icss.Supermarket.Supplier.dao.IDepartmentDao">
+
+    
+    <resultMap type="Supplier" id="Suppliermdb">
+       
+    </resultMap>
+    
+    <select id="query" parameterType="Supplier" resultMap="Suppliermdb">
+        select * from  Supplier;
+        
+    </select>
+    
+    <insert id="insert" parameterType="Supplier">
+        insert into Supplier(SupplierName, ContactsName, ContactsPhone,SupplierAddress,Remarks) values(#{SupplierName}, #{ContactsName}, #{ContactsPhone}, #{SupplierAddress}, #{Remarks})
+    </insert>
+    
+    <select id="getOne" parameterType="int" resultMap="Suppliermdb">
+        select * from Supplier where SupplierID = #{SupplierID}
+    </select>
+    
+     <update id="update" parameterType="Supplier">
+        update Supplier
+        <set>
+        SupplierName = #{SupplierName},
+        ContactsName = #{ContactsName},
+        ContactsPhone = #{ContactsPhone},
+        SupplierAddress = #{SupplierAddress},
+        Remarks = #{Remarks},       
+        </set>
+        where SupplierID = #{SupplierID}
+    </update>
+    
+      <delete id="delete" parameterType="int">
+        delete from Supplier where SupplierID = #{SupplierID}
+    </delete>
+    
+    
+   
+</mapper>

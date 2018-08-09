@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icss.Supermarket.UserInfo.dao.IDepartmentDao">
+
+    
+    <resultMap type="UserInfo" id="Usermdb">
+       
+    </resultMap>
+    
+    <select id="query" parameterType="UserInfo" resultMap="Usermdb">
+        select * from  UserInfo;
+        
+    </select>
+    <insert id="insert" parameterType="UserInfo">
+        insert into UserInfo(UserName, Password, Sex,Phone,Address,position) values(#{UserName}, #{Password}, #{Sex}, #{Phone}, #{Address}, #{position})
+    </insert>
+    
+    <select id="getOne" parameterType="int" resultMap="Usermdb">
+        select * from UserInfo where UserID = #{UserID}
+    </select>
+    
+     <update id="update" parameterType="UserInfo">
+        update UserInfo
+        <set>
+        UserName = #{UserName},
+        Password = #{Password},
+        Sex = #{Sex},
+        Phone = #{Phone},
+        Address = #{Address},
+        position = #{position},
+        </set>
+        where UserID = #{UserID}
+    </update>
+    
+      <delete id="delete" parameterType="int">
+        delete from UserInfo where UserID = #{UserID}
+    </delete>
+    
+    
+   
+</mapper>

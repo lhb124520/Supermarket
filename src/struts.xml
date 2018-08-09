@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>    
+    <constant name="struts.objectFactory" value="spring"></constant>
+    <package name="default" namespace="/" extends="struts-default">
+       <!-- <action name="customer" class="CuAction" method="login_Customer">
+            <result name="failure">/login.jsp</result>          
+            <result name="success">/Customer.jsp</result>
+           
+        </action> -->
+        <action name="Customer"  class="CusAction" method="login_Customer">
+          <result name="success">/Customer.jsp</result>
+          <result name="failure">/login.jsp</result>   
+          </action>
+        <action name="reg"  class="rAction" method="register">
+          <result name="success">/login.jsp</result>
+          </action>
+         
+         <action name="login" class="lAction" method="login">
+            <result name="failure">/login_admin.jsp</result>
+            <result name="login Admin">/index.jsp</result>
+            <result name="login Cashier">/Cashier.jsp</result>
+            <result name="login Buyer">/Buyer.jsp</result>
+            <result name="login customer">/Customer.jsp</result>
+            <result name="success">/index.jsp</result>
+        </action>
+         
+       
+        <!-- UserInfo -->
+        <action name="qbook" class="bAction" method="queryBook">
+            <result name="success">/UserInfo.jsp</result>
+        </action>
+        
+        <action name="abook" class="bAction" method="doAddDepartment">
+            <result name="success">/UserInfo.jsp</result>
+        </action>
+        
+         <action name="gbook" class="bAction" method="doGetDepartment">
+            <result name="success">/UserInfo_update.jsp</result>
+        </action>
+        <action name="ubook" class="bAction" method="doUpdateDepartment">
+            <result name="success">/UserInfo.jsp</result>
+        </action>
+       <action name="dbook" class="bAction" method="doDeleteDepartment">
+            <result name="success">/UserInfo.jsp</result>
+        </action>
+        <!-- UserInfo -->
+        
+        <!--Supplier  -->
+        <action name="qSupplier" class="SAction" method="querySupplier">
+            <result name="success">/Supplier.jsp</result>
+        </action>
+         
+          
+        <action name="aSupplier" class="SAction" method="doAddSupplier">
+            <result name="success">/Supplier.jsp</result>
+        </action>
+        
+         <action name="gSupplier" class="SAction" method="doGetSupplier">
+            <result name="success">/Supplier_update.jsp</result>
+        </action>
+        <action name="uSupplier" class="SAction" method="doUpdateSupplier">
+            <result name="success">/Supplier.jsp</result>
+        </action>
+       <action name="dSupplier" class="SAction" method="doDeleteSupplier">
+            <result name="success">/Supplier.jsp</result>
+        </action>
+        <!--Supplier  -->
+        <!--StockInfo  -->
+        <action name="qStockInfo" class="StAction" method="queryStockInfo">
+            <result name="success">/StockInfo.jsp</result>
+        </action>
+         
+          <action name="queryone" class="StAction" method="queryone">
+            <result name="success">/StockInfo_add.jsp</result>
+        </action>
+        <action name="aStockInfo" class="StAction" method="doAddStockInfo">
+            <result name="success">/StockInfo.jsp</result>
+        </action>
+        
+         <action name="gStockInfo" class="StAction" method="doGetStockInfo">
+            <result name="success">/StockInfo_update.jsp</result>
+        </action>
+        <action name="uStockInfo" class="StAction" method="doUpdateStockInfo">
+            <result name="success">/StockInfo.jsp</result>
+        </action>
+       <action name="dStockInfo" class="StAction" method="doDeleteStockInfo">
+            <result name="success">/StockInfo.jsp</result>
+        </action>
+        <!--StockInfo  -->
+        
+             <!--ReturngoodsInfo  -->
+        <action name="qReturngoodsInfo" class="retAction" method="queryReturngoodsInfo">
+            <result name="success">/ReturngoodsInfo.jsp</result>
+        </action>
+         
+          <action name="querytwo" class="retAction" method="querytwo">
+            <result name="success">/ReturngoodsInfo_add.jsp</result>
+        </action>
+        <action name="aReturngoodsInfo" class="retAction" method="doAddReturngoodsInfo">
+            <result name="success">/ReturngoodsInfo.jsp</result>
+        </action>
+        
+         <action name="gReturngoodsInfo" class="retAction" method="doGetReturngoodsInfo">
+            <result name="success">/ReturngoodsInfo_update.jsp</result>
+        </action>
+        <action name="uReturngoodsInfo" class="retAction" method="doUpdateReturngoodsInfo">
+            <result name="success">/ReturngoodsInfo.jsp</result>
+        </action>
+       <action name="dReturngoodsInfo" class="retAction" method="doDeleteReturngoodsInfo">
+            <result name="success">/ReturngoodsInfo.jsp</result>
+        </action>
+        <!--ReturngoodsInfo  -->
+        <!--InGoodsInfo  -->
+        <action name="qInGoodsInfo" class="IAction" method="queryInGoodsInfo">
+            <result name="success">/InGoodsInfo.jsp</result>
+        </action>      
+          
+        <!--InGoodsInfo  -->
+        
+        <!--SaleInfo  -->
+        <action name="qSaleInfo" class="SalAction" method="querySaleInfo">
+            <result name="success">/SaleInfo.jsp</result>
+        </action>      
+          
+        <!--SaleInfo  -->
+        
+          <!--Cashier  -->
+        <action name="qCashier" class="CAction" method="queryCashier">
+            <result name="success">/Cashier_SaleInfo.jsp</result>
+        </action>
+        
+         
+          <action name="queryGoods" class="CAction" method="queryGoods">
+            <result name="success">/Cashier_SaleInfo_add.jsp</result>
+        </action>
+         <action name="queryGoodsNum" class="CAction" method="queryGoodsNum">
+            <result name="success">/Cashier_SaleInfo_update.jsp</result>
+        </action>
+        <action name="aCashier" class="CAction" method="doAddCashier">
+            <result name="success">/Cashier_SaleInfo.jsp</result>
+        </action>
+        
+         <action name="gCashier" class="CAction" method="doGetCashier">
+            <result name="success">/Cashier_SaleInfo_update.jsp</result>
+        </action>
+        <action name="uCashier" class="CAction" method="doUpdateCashier">
+            <result name="success">/Cashier_SaleInfo.jsp</result>
+        </action>
+       <action name="dCashier" class="CAction" method="doDeleteCashier">
+            <result name="success">/Cashier_SaleInfo.jsp</result>
+        </action>
+        <!--Cashier  -->
+        
+           <!--Buyer  -->
+        <action name="qBuyer" class="BAction" method="queryBuyer">
+            <result name="success">/Buyer_InGoodsInfo.jsp</result>
+        </action>
+         
+          <action name="querySupplierName" class="BAction" method="querySupplierName">
+            <result name="success">/Buyer_InGoodsInfo_add.jsp</result>
+        </action>
+        <action name="aBuyer" class="BAction" method="doAddBuyer">
+            <result name="success">/Buyer_InGoodsInfo.jsp</result>
+        </action>
+        
+         <action name="gBuyer" class="BAction" method="doGetBuyer">
+            <result name="success">/Buyer_InGoodsInfo_update.jsp</result>
+        </action>
+        <action name="uBuyer" class="BAction" method="doUpdateBuyer">
+            <result name="success">/Buyer_InGoodsInfo.jsp</result>
+        </action>
+       <action name="dBuyer" class="BAction" method="doDeleteBuyer">
+            <result name="success">/Buyer_InGoodsInfo.jsp</result>
+        </action>
+        <!--Buyer  -->
+        
+         <!--Customer  -->
+        <action name="qCustomer" class="CCAction" method="queryCustomer">
+            <result name="success">/Customer_ReturngoodsInfo.jsp</result>
+        </action>
+         
+          <action name="querySaleID" class="CCAction" method="querySaleID">
+            <result name="success">/Customer_ReturngoodsInfo_add.jsp</result>
+        </action>
+        <action name="aCustomer" class="CCAction" method="doAddCustomer">
+            <result name="success">/Customer_ReturngoodsInfo.jsp</result>
+        </action>
+        
+         <action name="gCustomer" class="CCAction" method="doGetCustomer">
+            <result name="success">/Customer_ReturngoodsInfo_update.jsp</result>
+        </action>
+        <action name="uCustomer" class="CCAction" method="doUpdateCustomer">
+            <result name="success">/Customer_ReturngoodsInfo.jsp</result>
+        </action>
+       <action name="dCustomer" class="CCAction" method="doDeleteCustomer">
+            <result name="success">/Customer_ReturngoodsInfo.jsp</result>
+        </action>
+        <!--Customer  -->
+    </package>
+    
+</struts>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context ="http://www.springframework.org/schema/context" 
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd" 
+        default-init-method="initBean">
+        <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+    <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/Supermarket?characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123"/>
+        <property name="initialSize" value="2"/>
+        <property name="maxActive" value="4"/>
+    </bean>      
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="ds"/>
+    </bean>
+    
+    <bean id="ds1" class="org.springframework.jdbc.datasource.SingleConnectionDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/Supermarket?characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123"/>
+    </bean>    
+    
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="ds"/>
+        <property name="configLocation" value="classpath:dbConf.xml"/>
+    </bean>
+     <!-- 注册 -->
+     
+      <bean id="rAction" class="com.icss.Supermarket.register.action.RegisterAction">
+        <constructor-arg ref="rService"/>
+    </bean>
+    <bean id="rService" class="com.icss.Supermarket.register.service.impl.RegisterService">
+        <property name="dao" ref="rdao"/>
+    </bean>
+      <bean id="rdao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.register.dao.IRegisterDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean>
+     <!-- 注册 -->
+     <!-- 顾客登录 -->
+     <bean id="CusAction" class="com.icss.Supermarket.Customer_Login.action.LoginAction">
+        <property name="service" ref="Cusservice"/> 
+    </bean>
+    <bean name="Cusservice" class="com.icss.Supermarket.Customer_Login.service.impl.LoginService">
+        <property name="dao" ref="Cusdao"/>
+    </bean>   
+    
+    <bean id="Cusdao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.Customer_Login.dao.ILoginDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean>  
+    
+     <!-- 顾客登录-->
+     <!-- 登录 -->
+    <bean id="lAction" class="com.icss.Supermarket.login.action.LoginAction">
+        <property name="service" ref="lservice"/> 
+    </bean>
+    <bean name="lservice" class="com.icss.Supermarket.login.service.impl.LoginService">
+        <property name="dao" ref="ldao"/>
+    </bean>   
+    
+    <bean id="ldao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.login.dao.ILoginDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean>  
+    <!-- 登录 -->
+    
+    <!-- UserInfo表 -->
+    <bean id="bAction" class="com.icss.Supermarket.UserInfo.action.DepartmentAction">
+        <constructor-arg ref="bService"/>
+    </bean>
+    <bean id="bService" class="com.icss.Supermarket.UserInfo.service.impl.DepartmentService">
+        <property name="dao" ref="bdao"/>
+    </bean> 
+    <bean id="bdao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.UserInfo.dao.IDepartmentDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean> 
+   <!-- UserInfo表 -->
+  
+   <!-- Supplier表 -->
+    <bean id="SAction" class="com.icss.Supermarket.Supplier.action.DepartmentAction">
+        <constructor-arg ref="SService"/>
+    </bean>
+    <bean id="SService" class="com.icss.Supermarket.Supplier.service.impl.DepartmentService">
+        <property name="dao" ref="Sdao"/>
+    </bean> 
+    <bean id="Sdao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.Supplier.dao.IDepartmentDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean> 
+   <!-- Supplier表 -->
+   <!-- StockInfo表 -->
+    <bean id="StAction" class="com.icss.Supermarket.StockInfo.action.DepartmentAction">
+        <constructor-arg ref="StService"/>
+    </bean>
+    <bean id="StService" class="com.icss.Supermarket.StockInfo.service.impl.DepartmentService">
+        <property name="dao" ref="Stdao"/>
+    </bean> 
+    <bean id="Stdao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.StockInfo.dao.IDepartmentDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean> 
+   <!-- StockInfo表 -->
+   <!-- ReturngoodsInfo表 -->
+    <bean id="retAction" class="com.icss.Supermarket.ReturngoodsInfo.action.DepartmentAction">
+        <constructor-arg ref="retService"/>
+    </bean>
+    <bean id="retService" class="com.icss.Supermarket.ReturngoodsInfo.service.impl.DepartmentService">
+        <property name="dao" ref="retdao"/>
+    </bean> 
+    <bean id="retdao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.ReturngoodsInfo.dao.IDepartmentDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean> 
+   <!-- ReturngoodsInfo表 -->
+      <!-- InGoodsInfo表 -->
+    <bean id="IAction" class="com.icss.Supermarket.InGoodsInfo.action.DepartmentAction">
+        <constructor-arg ref="IService"/>
+    </bean>
+    <bean id="IService" class="com.icss.Supermarket.InGoodsInfo.service.impl.DepartmentService">
+        <property name="dao" ref="Idao"/>
+    </bean> 
+    <bean id="Idao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.InGoodsInfo.dao.IDepartmentDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean> 
+   <!-- InGoodsInfo表 -->
+       <!-- SaleInfo表 -->
+    <bean id="SalAction" class="com.icss.Supermarket.SaleInfo.action.DepartmentAction">
+        <constructor-arg ref="SalService"/>
+    </bean>
+    <bean id="SalService" class="com.icss.Supermarket.SaleInfo.service.impl.DepartmentService">
+        <property name="dao" ref="Saldao"/>
+    </bean> 
+    <bean id="Saldao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.SaleInfo.dao.IDepartmentDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean> 
+   <!-- SaleInfo表 -->
+    <!-- Cashier -->
+    <bean id="CAction" class="com.icss.Supermarket.Cashier.action.DepartmentAction">
+        <constructor-arg ref="CService"/>
+    </bean>
+    <bean id="CService" class="com.icss.Supermarket.Cashier.service.impl.DepartmentService">
+        <property name="dao" ref="Cdao"/>
+    </bean> 
+    <bean id="Cdao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.Cashier.dao.IDepartmentDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean> 
+   <!-- Cashier -->
+    
+        <!-- Buyer -->
+    <bean id="BAction" class="com.icss.Supermarket.Buyer.action.DepartmentAction">
+        <constructor-arg ref="BService"/>
+    </bean>
+    <bean id="BService" class="com.icss.Supermarket.Buyer.service.impl.DepartmentService">
+        <property name="dao" ref="Bdao"/>
+    </bean> 
+    <bean id="Bdao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.Buyer.dao.IDepartmentDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean> 
+   <!-- Buyer -->
+          <!--Customer  -->
+    <bean id="CCAction" class="com.icss.Supermarket.Customer.action.DepartmentAction">
+        <constructor-arg ref="CCService"/>
+    </bean>
+    <bean id="CCService" class="com.icss.Supermarket.Customer.service.impl.DepartmentService">
+        <property name="dao" ref="CCdao"/>
+    </bean> 
+    <bean id="CCdao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.icss.Supermarket.Customer.dao.IDepartmentDao"/>
+        <property name="sqlSessionFactory" ref="sessionFactory"/>
+    </bean> 
+   <!-- Customer -->
+   
+    
+</beans>

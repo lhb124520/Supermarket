@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+    	<typeAlias alias="GoodsInfo" type="com.icss.Supermarket.Cashier.domain.GoodsInfo"/>
+    	<typeAlias alias="Customer" type="com.icss.Supermarket.Customer_Login.domain.Customer"/>
+        <typeAlias alias="reg" type="com.icss.Supermarket.register.domain.User"/>
+        <typeAlias alias="UserInfo" type="com.icss.Supermarket.UserInfo.domain.User"/> 
+        <typeAlias alias="User" type="com.icss.Supermarket.login.domain.User"/>
+        <typeAlias alias="Supplier" type="com.icss.Supermarket.Supplier.domain.Supplier"/> 
+        <typeAlias alias="StockInfo" type="com.icss.Supermarket.StockInfo.domain.StockInfo"/> 
+   		<typeAlias alias="ReturngoodsInfo" type="com.icss.Supermarket.ReturngoodsInfo.domain.ReturngoodsInfo"/> 
+        <typeAlias alias="InGoodsInfo" type="com.icss.Supermarket.InGoodsInfo.domain.InGoodsInfo"/> 
+    	<typeAlias alias="SaleInfo" type="com.icss.Supermarket.SaleInfo.domain.SaleInfo"/> 
+    	<typeAlias alias="Cashier" type="com.icss.Supermarket.Cashier.domain.Cashier"/> 
+    	<typeAlias alias="Buyer" type="com.icss.Supermarket.Buyer.domain.Buyer"/> 
+    	<typeAlias alias="CC" type="com.icss.Supermarket.Customer.domain.Customer"/> 
+    </typeAliases>
+    
+    
+    <mappers>
+        <mapper resource="com/icss/Supermarket/Customer_Login/dao/Customer.xml"/>
+        <mapper resource="com/icss/Supermarket/register/dao/register.xml"/> 
+        <mapper resource="com/icss/Supermarket/UserInfo/dao/User.xml"/> 
+        <mapper resource="com/icss/Supermarket/login/dao/user.xml"/>
+        <mapper resource="com/icss/Supermarket/Supplier/dao/Supplier.xml"/>
+        <mapper resource="com/icss/Supermarket/StockInfo/dao/StockInfo.xml"/>
+        <mapper resource="com/icss/Supermarket/ReturngoodsInfo/dao/ReturngoodsInfo.xml"/>
+        <mapper resource="com/icss/Supermarket/InGoodsInfo/dao/InGoodsInfo.xml"/>
+    	<mapper resource="com/icss/Supermarket/SaleInfo/dao/SaleInfo.xml"/>
+    	<mapper resource="com/icss/Supermarket/Cashier/dao/Cashier.xml"/>
+    	<mapper resource="com/icss/Supermarket/Buyer/dao/Buyer.xml"/>
+    	<mapper resource="com/icss/Supermarket/Customer/dao/Customer.xml"/>
+    </mappers>
+</configuration>

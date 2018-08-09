@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icss.Supermarket.Customer.dao.IDepartmentDao">
+
+    
+    <resultMap type="CC" id="Suppliermdb">
+       
+    </resultMap>
+    
+    <select id="query" parameterType="CC" resultMap="Suppliermdb">
+        select * from  ReturngoodsInfo where UserName=#{UserName};
+        
+    </select>
+    <select id="querySaleID" parameterType="CC" resultMap="Suppliermdb">
+        select SaleID from  SaleInfo;
+        
+    </select>
+    <insert id="insert" parameterType="CC">
+        insert into ReturngoodsInfo(UserName, SaleID, ReturnGoodsInPrice,ReturnGoodsNum,ReturnGoodsReason) values(#{UserName}, #{SaleID}, #{ReturnGoodsInPrice}, #{ReturnGoodsNum}, #{ReturnGoodsReason})
+    </insert>
+    
+    <select id="getOne" parameterType="int" resultMap="Suppliermdb">
+        select * from ReturngoodsInfo where ReturngoodsID = #{ReturngoodsID}
+    </select>
+    
+     <update id="update" parameterType="CC">
+        update ReturngoodsInfo
+        <set>        
+        ReturnGoodsInPrice = #{ReturnGoodsInPrice},
+        ReturnGoodsNum = #{ReturnGoodsNum},
+        ReturnGoodsReason = #{ReturnGoodsReason},
+       
+        </set>
+        where ReturngoodsID = #{ReturngoodsID};
+        
+       
+    </update>
+    
+      <delete id="delete" parameterType="int">
+        delete from ReturngoodsInfo where ReturngoodsID = #{ReturngoodsID}
+    </delete>
+    
+    
+   
+</mapper>
